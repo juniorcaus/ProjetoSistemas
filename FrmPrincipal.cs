@@ -6,12 +6,17 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 
 namespace ProjetoSistemas
 {
     public partial class FrmPrincipal : Form
     {
+        Conexao con  = new Conexao(); // "con" chama todos os metados da classe Conexao.cs, Lembrando q o "con" daqui é diferente do "con" dentro do Conexao.cs
+
+        string sql;  //Varial para pode declarar em outros lugares usando apenas "sql = " e pega os valores dentro da string "sql"
+        MySqlCommand cmd; // 
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -34,13 +39,25 @@ namespace ProjetoSistemas
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
+          
+            con.AbrirConexao(); // Essa função abre o metado de Conexão dentro da classe Conexao.cs
+            //CRUD
+
+            sql =  "INSERT INTO cliente (nome, endereco, cpf, telefone) VALUES (@nome, @endereco, @cpf, @telefone)";
+            cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@nome", txtNome.Text); //função para adicionar parametros com os valores ou seja vai buscar o valor q for digitado no campo "nome" do projeto
+            cmd.Parameters.AddWithValue("@endereco", txtEnd.Text);
+            cmd.Parameters.AddWithValue("cpf", txtCPF.Text);
+            cmd.Parameters.AddWithValue("telefone", txtTel.Text);
+
+            cmd.ExecuteNonQuery();
+            con.FecharConexao();
+
             //quando tiver dados
             LimparCampos();
             DesabalitarCampos();
             DesabilitarBotoes();
             btnNovo.Enabled = true; // PARA DEIXAR APENAS O BOTÃO "NOVO" ATIVADO
-
-        
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)

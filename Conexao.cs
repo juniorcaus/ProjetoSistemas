@@ -26,7 +26,7 @@ namespace ProjetoSistemas
             catch(Exception ex)
             {
                 //error
-                MessageBox.Show("Erro no Servidor!" + ex.Message);
+                MessageBox.Show("Erro no Servidor! ==> " + ex.Message);
             }
         }
 
@@ -40,7 +40,7 @@ namespace ProjetoSistemas
             catch(Exception ex)
             {
                 //error
-                MessageBox.Show("Erro no Servidor!" + ex.Message);
+                MessageBox.Show("Erro no Servidor! --> " + ex.Message);
             }
         }
 
