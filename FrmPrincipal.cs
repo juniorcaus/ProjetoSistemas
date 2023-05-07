@@ -40,6 +40,22 @@ namespace ProjetoSistemas
         private void btnSalvar_Click(object sender, EventArgs e)
         {
           
+            //se
+            if(txtNome.Text.ToString().Trim() == "") // Se o texto que digitei no formulario "nome" estiver vazio vai dar error e abrir uma mensagem
+            {
+                MessageBox.Show("O campo Nome é obrigatório.");
+                txtNome.Text = "";
+                txtNome.Focus();
+                return;
+            }
+
+            if (txtCPF.Text == "   .   .   -" || txtCPF.Text.Length <14) // Se o texto que digitei no formulario "nome" estiver vazio vai dar error e abrir uma mensagem
+            {
+                MessageBox.Show("O campo CPF é obrigatório.");
+                txtCPF.Focus();
+                return;
+            }
+
             con.AbrirConexao(); // Essa função abre o metado de Conexão dentro da classe Conexao.cs
             //CRUD
 
