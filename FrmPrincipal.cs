@@ -22,20 +22,41 @@ namespace ProjetoSistemas
             InitializeComponent();
         }
 
+        private void FormatarGD()
+        {
+            grid.Columns[0].HeaderText = "Código";
+            grid.Columns[1].HeaderText = "Nome";
+            grid.Columns[2].HeaderText = "Endereço";
+            grid.Columns[3].HeaderText = "CPF";
+            grid.Columns[4].HeaderText = "Celular";
+            grid.Columns[5].HeaderText = "Tel..";
+
+            grid.Columns[0].Visible = false; //ocultando a coluna de "código" ao exibir o banco de dados no grid
+        }
+
+
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-
+            // Carrega tudo ao abrir
+            ListarGrid();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void ListarGrid()
         {
+            con.AbrirConexao();
+            sql = "SELECT * FROM cliente ORDER BY NOME ASC"; // SELECIONAR TODOS ORDENADO POR NOME ACRESCENTE(A - Z) 
+            cmd = new MySqlCommand(sql, con.con);
+            MySqlDataAdapter da = new MySqlDataAdapter(); // instanciando tudo de "MySqlDataAdapter" para a variavel " da "
+            da.SelectCommand = cmd; // recebendo oq esta dentro da variavel " cmd "
+            DataTable dt = new DataTable();  // tudo que vem de "DataTable"  vai ser jogado em " dt "
+            da.Fill(dt); //preencher um DataTable com os dados do banco de dados MySql
+            grid.DataSource = dt; // defeinir a fonte de dados para qual o grid vai ser exibido q no caso é o " dt "
+            con.FecharConexao();
 
+            FormatarGD();
+            
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void btnSalvar_Click(object sender, EventArgs e)
         {
@@ -150,6 +171,46 @@ namespace ProjetoSistemas
             txtTel.Text = "";
         }
 
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
 
+            //se
+            if (txtNome.Text.ToString().Trim() == "") // Se o texto que digitei no formulario "nome" estiver vazio vai dar error e abrir uma mensagem
+            {
+                MessageBox.Show("O campo Nome é obrigatório.");
+                txtNome.Text = "";
+                txtNome.Focus();
+                return;
+            }
+
+            if (txtCPF.Text == "   .   .   -" || txtCPF.Text.Length < 14) // Se o texto que digitei no formulario "nome" estiver vazio vai dar error e abrir uma mensagem
+            {
+                MessageBox.Show("O campo CPF é obrigatório.");
+                txtCPF.Focus();
+                return;
+            }
+
+
+            con.AbrirConexao(); // Essa função abre o metado de Conexão dentro da classe Conexao.cs
+            //CRUD
+
+            sql = "UPDATE cliente SET nome = @nome, endereco = @endereco, cpf = @cpf, telefone = @telefone)";
+            cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@nome", txtNome.Text); //função para adicionar parametros com os valores ou seja vai buscar o valor q for digitado no campo "nome" do projeto
+            cmd.Parameters.AddWithValue("@endereco", txtEnd.Text);
+            cmd.Parameters.AddWithValue("cpf", txtCPF.Text);
+            cmd.Parameters.AddWithValue("telefone", txtTel.Text);
+
+            cmd.ExecuteNonQuery();
+            con.FecharConexao();
+
+            //quando tiver dados
+            LimparCampos();
+            DesabalitarCampos();
+            DesabilitarBotoes();
+            btnNovo.Enabled = true; // PARA DEIXAR APENAS O BOTÃO "NOVO" ATIVADO
+        }
+
+    
     }//FIM
 }
