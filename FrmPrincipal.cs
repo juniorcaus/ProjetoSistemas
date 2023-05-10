@@ -24,7 +24,7 @@ namespace ProjetoSistemas
 
         private void FormatarGD()
         {
-            grid.Columns[0].HeaderText = "Código";
+            grid.Columns[0].HeaderText = "Código"; // "código" é o mesmo que "id"
             grid.Columns[1].HeaderText = "Nome";
             grid.Columns[2].HeaderText = "Endereço";
             grid.Columns[3].HeaderText = "CPF";
@@ -134,6 +134,7 @@ namespace ProjetoSistemas
         private void DesabilitarBotoes() //METADO DESABILITA BOTOES
         {
             btnNovo.Enabled = false;
+            btnAlterar.Enabled = false;
             btnCancelar.Enabled = false;
             btnExcluir.Enabled = false;
             btnSalvar.Enabled = false;
@@ -143,6 +144,7 @@ namespace ProjetoSistemas
         {
             btnNovo.Enabled = true;
             btnSalvar.Enabled = true;
+            btnAlterar.Enabled = true;
             btnExcluir.Enabled = true;
             btnCancelar.Enabled = true;
         }
@@ -211,6 +213,21 @@ namespace ProjetoSistemas
             btnNovo.Enabled = true; // PARA DEIXAR APENAS O BOTÃO "NOVO" ATIVADO
         }
 
+        private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            HabilitarBotoes();
+            btnNovo.Enabled = false;
+            btnSalvar.Enabled = false;
+            HabilitarCampos();
+
+            txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString(); //converte para texto tudo que vem da celula do grid e jogo para o "txtNome"
+
+            
+
+
+        
     
+
+    }
     }//FIM
 }
