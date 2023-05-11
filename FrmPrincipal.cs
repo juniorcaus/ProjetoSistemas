@@ -16,7 +16,12 @@ namespace ProjetoSistemas
         Conexao con  = new Conexao(); // "con" chama todos os metados da classe Conexao.cs, Lembrando q o "con" daqui é diferente do "con" dentro do Conexao.cs
 
         string sql;  //Varial para pode declarar em outros lugares usando apenas "sql = " e pega os valores dentro da string "sql"
-        MySqlCommand cmd; // 
+        MySqlCommand cmd;
+
+        
+        string id; //Variavel que pega o id do registro
+
+
         public FrmPrincipal()
         {
             InitializeComponent();
@@ -197,8 +202,10 @@ namespace ProjetoSistemas
             con.AbrirConexao(); // Essa função abre o metado de Conexão dentro da classe Conexao.cs
             //CRUD
 
-            sql = "UPDATE cliente SET nome = @nome, endereco = @endereco, cpf = @cpf, telefone = @telefone";
+            sql = "UPDATE cliente SET nome = @nome, endereco = @endereco, cpf = @cpf, telefone = @telefone WHERE id=@id";  //o código "WHERE id=@id" é para buscar a propriedade expecifica como 'nome, cpf, telefone etc..
             cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@id", id ); // com isso quando for alterar um determinado registro, só vai alterar o selecionado com "id"
+
             cmd.Parameters.AddWithValue("@nome", txtNome.Text); //função para adicionar parametros com os valores ou seja vai buscar o valor q for digitado no campo "nome" do projeto
             cmd.Parameters.AddWithValue("@endereco", txtEnd.Text);
             cmd.Parameters.AddWithValue("cpf", txtCPF.Text);
@@ -221,6 +228,8 @@ namespace ProjetoSistemas
             btnSalvar.Enabled = false;
             HabilitarCampos();
 
+            id= grid.CurrentRow.Cells[0].Value.ToString(); //vai pegar oque ta na posição "0" e jogar na variavel "id"
+
             txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString(); //converte para texto tudo que vem da celula do grid e jogo para o "txtNome"
             txtEnd.Text = grid.CurrentRow.Cells[2].Value.ToString();
             txtCPF.Text = grid.CurrentRow.Cells[3].Value.ToString();
@@ -229,3 +238,4 @@ namespace ProjetoSistemas
         }
     }//FIM
 }
+ 
