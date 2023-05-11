@@ -31,7 +31,8 @@ namespace ProjetoSistemas
             grid.Columns[4].HeaderText = "Celular";
             grid.Columns[5].HeaderText = "Tel..";
 
-            grid.Columns[0].Visible = false; //ocultando a coluna de "código" ao exibir o banco de dados no grid
+            grid.Columns[0].Visible = false; //ocultando a coluna  0 que é o "código" ao exibir o banco de dados no grid
+            grid.Columns[4].Visible = false;
         }
 
 
@@ -196,7 +197,7 @@ namespace ProjetoSistemas
             con.AbrirConexao(); // Essa função abre o metado de Conexão dentro da classe Conexao.cs
             //CRUD
 
-            sql = "UPDATE cliente SET nome = @nome, endereco = @endereco, cpf = @cpf, telefone = @telefone)";
+            sql = "UPDATE cliente SET nome = @nome, endereco = @endereco, cpf = @cpf, telefone = @telefone";
             cmd = new MySqlCommand(sql, con.con);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text); //função para adicionar parametros com os valores ou seja vai buscar o valor q for digitado no campo "nome" do projeto
             cmd.Parameters.AddWithValue("@endereco", txtEnd.Text);
@@ -221,13 +222,10 @@ namespace ProjetoSistemas
             HabilitarCampos();
 
             txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString(); //converte para texto tudo que vem da celula do grid e jogo para o "txtNome"
+            txtEnd.Text = grid.CurrentRow.Cells[2].Value.ToString();
+            txtCPF.Text = grid.CurrentRow.Cells[3].Value.ToString();
+            txtTel.Text = grid.CurrentRow.Cells[5].Value.ToString();
 
-            
-
-
-        
-    
-
-    }
+        }
     }//FIM
 }
