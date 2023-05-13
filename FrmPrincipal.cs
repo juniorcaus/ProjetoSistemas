@@ -112,15 +112,21 @@ namespace ProjetoSistemas
 
         private void btnExcluir_Click(object sender, EventArgs e)
         {
+
+           var resposta = MessageBox.Show("Deseja realmente excluir esse registro?", "Excluir", MessageBoxButtons.YesNo, MessageBoxIcon.Question); //transformou essa "MessageBox" na variavel "resposta"
+
+            if (resposta == DialogResult.Yes) //fazer a pergunta de SIM ou NAO, E SE FOR "SIM" VAI TER O RESULTADO DENTRO DO "IF"
+            {
+                MessageBox.Show("Registro Apagado com Sucesso!!");
+            }   
+
+           
             LimparCampos();
             DesabalitarCampos();
             DesabilitarBotoes();
 
             btnNovo.Enabled = true; // PARA DEIXAR APENAS O BOTÃO "NOVO" ATIVADO
-
-
-
-            ListarGrid(); // ESSE METADO ATUALIZA A GRID 
+            
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -139,7 +145,9 @@ namespace ProjetoSistemas
             txtNome.Focus();
             LimparCampos();
             HabilitarBotoes();
-            btnNovo.Enabled = false; //FUNÇÃO PARA DEIXAR APENAS O BOTÃO "NOVO" DESATIVATO, DEPOIS DE CLICAR NELE MESMO
+            btnNovo.Enabled = false; //FUNÇÃO PARA DEIXAR O BOTÃO "NOVO" DESATIVATO, DEPOIS DE CLICAR NELE MESMO
+            btnAlterar.Enabled = false;
+            btnExcluir.Enabled = false;
             
          
 
