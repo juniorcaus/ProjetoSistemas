@@ -100,7 +100,14 @@ namespace ProjetoSistemas
             LimparCampos();
             DesabalitarCampos();
             DesabilitarBotoes();
+          
             btnNovo.Enabled = true; // PARA DEIXAR APENAS O BOTÃO "NOVO" ATIVADO
+           
+            
+            ListarGrid(); // ESSE METADO ATUALIZA A GRID 
+
+
+            MessageBox.Show("Registro Salvo com Sucesso !!!", "Salvar",MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnExcluir_Click(object sender, EventArgs e)
@@ -110,6 +117,10 @@ namespace ProjetoSistemas
             DesabilitarBotoes();
 
             btnNovo.Enabled = true; // PARA DEIXAR APENAS O BOTÃO "NOVO" ATIVADO
+
+
+
+            ListarGrid(); // ESSE METADO ATUALIZA A GRID 
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -219,6 +230,12 @@ namespace ProjetoSistemas
             DesabalitarCampos();
             DesabilitarBotoes();
             btnNovo.Enabled = true; // PARA DEIXAR APENAS O BOTÃO "NOVO" ATIVADO
+
+
+
+            ListarGrid(); // ESSE METADO ATUALIZA A GRID 
+
+            MessageBox.Show("Registro Alterado com Sucesso !!!", "Alterar", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void grid_CellClick(object sender, DataGridViewCellEventArgs e)

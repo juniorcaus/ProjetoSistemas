@@ -210,7 +210,7 @@
             this.grid.Location = new System.Drawing.Point(45, 265);
             this.grid.Name = "grid";
             this.grid.ReadOnly = true;
-            this.grid.Size = new System.Drawing.Size(1005, 193);
+            this.grid.Size = new System.Drawing.Size(1005, 311);
             this.grid.TabIndex = 18;
             this.grid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellClick);
             // 
