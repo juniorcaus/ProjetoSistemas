@@ -117,15 +117,31 @@ namespace ProjetoSistemas
 
             if (resposta == DialogResult.Yes) //fazer a pergunta de SIM ou NAO, E SE FOR "SIM" VAI TER O RESULTADO DENTRO DO "IF"
             {
-                MessageBox.Show("Registro Apagado com Sucesso!!");
+                con.AbrirConexao(); // Essa função abre o metado de Conexão dentro da classe Conexao.cs
+                                    
+                //CRUD: ↓
+                // CREAT = INSERT, READ = SELECT, UPDATE = UPDATE, DELETE = DELETE
+
+                sql = "DELETE FROM cliente WHERE id=@id"; // O "id" é uma variavel criado mais acima no código e o " @id " é o id vindo do banco de dados
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@id", id);  // o "id" recebe um valor quando clica na Grid
+               
+
+                cmd.ExecuteNonQuery();
+                con.FecharConexao();
+
+
+                LimparCampos();
+                DesabalitarCampos();
+                DesabilitarBotoes();
+                btnNovo.Enabled = true; // PARA DEIXAR APENAS O BOTÃO "NOVO" ATIVADO
+
+                ListarGrid(); //Para atualizar
+                MessageBox.Show("Registro Apagado com Sucesso !!!", "Excluir", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }   
 
            
-            LimparCampos();
-            DesabalitarCampos();
-            DesabilitarBotoes();
-
-            btnNovo.Enabled = true; // PARA DEIXAR APENAS O BOTÃO "NOVO" ATIVADO
+            
             
         }
 
