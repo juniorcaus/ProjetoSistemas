@@ -186,11 +186,11 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Enabled = false;
             this.txtBuscar.Location = new System.Drawing.Point(644, 47);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(257, 20);
             this.txtBuscar.TabIndex = 17;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // label5
             // 

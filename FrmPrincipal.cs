@@ -277,6 +277,29 @@ namespace ProjetoSistemas
             txtTel.Text = grid.CurrentRow.Cells[5].Value.ToString();
 
         }
+
+        
+        private void BuscarNome() //Metado buscar pelo nome
+        {
+            con.AbrirConexao(); // abrir conexão
+            sql = "SELECT * FROM cliente WHERE nome LIKE @nome ORDER BY nome ASC"; //LIKE , BUSCA O NOME POR APROXIMAÇÃO 
+            cmd = new MySqlCommand(sql, con.con);
+            cmd.Parameters.AddWithValue("@nome", txtBuscar.Text + "%"); // OPERADOR LIKE, BUSCA POR APROXIMAÇÃO;
+
+            MySqlDataAdapter da = new MySqlDataAdapter(); // instanciando tudo de "MySqlDataAdapter" para a variavel " da "
+            da.SelectCommand = cmd; // recebendo oq esta dentro da variavel " cmd "
+            DataTable dt = new DataTable();  // tudo que vem de "DataTable"  vai ser jogado em " dt "
+            da.Fill(dt); //preencher um DataTable com os dados do banco de dados MySql
+            grid.DataSource = dt; // defeinir a fonte de dados para qual o grid vai ser exibido q no caso é o " dt "
+            con.FecharConexao();
+
+            FormatarGD();
+
+        }
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            BuscarNome();
+        }
     }//FIM
 }
  
