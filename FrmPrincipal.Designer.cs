@@ -45,10 +45,11 @@
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.grid = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.image = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnImg = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.image)).BeginInit();
             this.SuspendLayout();
             // 
             // lblNome
@@ -214,22 +215,33 @@
             this.grid.TabIndex = 18;
             this.grid.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grid_CellClick);
             // 
-            // pictureBox1
+            // image
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(1141, 54);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(168, 187);
-            this.pictureBox1.TabIndex = 19;
-            this.pictureBox1.TabStop = false;
+            this.image.Location = new System.Drawing.Point(1114, 40);
+            this.image.Name = "image";
+            this.image.Size = new System.Drawing.Size(220, 210);
+            this.image.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.image.TabIndex = 19;
+            this.image.TabStop = false;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1204, 29);
+            this.label6.Location = new System.Drawing.Point(1204, 18);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 13);
             this.label6.TabIndex = 20;
             this.label6.Text = "FOTO";
+            // 
+            // btnImg
+            // 
+            this.btnImg.Location = new System.Drawing.Point(1168, 256);
+            this.btnImg.Name = "btnImg";
+            this.btnImg.Size = new System.Drawing.Size(104, 23);
+            this.btnImg.TabIndex = 21;
+            this.btnImg.Text = "Adicionar";
+            this.btnImg.UseVisualStyleBackColor = true;
+            this.btnImg.Click += new System.EventHandler(this.btnImg_Click);
             // 
             // FrmPrincipal
             // 
@@ -237,8 +249,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Teal;
             this.ClientSize = new System.Drawing.Size(1346, 637);
+            this.Controls.Add(this.btnImg);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.image);
             this.Controls.Add(this.grid);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.label5);
@@ -260,7 +273,7 @@
             this.Text = "Principal";
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.image)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,8 +298,9 @@
         private System.Windows.Forms.TextBox txtBuscar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DataGridView grid;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox image;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnImg;
     }
 }
 

@@ -21,6 +21,8 @@ namespace ProjetoSistemas
         
         string id; //Variavel que pega o id do registro
 
+        string foto;            // Variavel que vai receber a imagem (criado globalmente, para poder ser usado em qualquer lugar do código).
+
 
         public FrmPrincipal()
         {
@@ -35,9 +37,11 @@ namespace ProjetoSistemas
             grid.Columns[3].HeaderText = "CPF";
             grid.Columns[4].HeaderText = "Celular";
             grid.Columns[5].HeaderText = "Tel..";
+            grid.Columns[6].HeaderText = "foto";
 
             grid.Columns[0].Visible = false; //ocultando a coluna  0 que é o "código" ao exibir o banco de dados no grid
             grid.Columns[4].Visible = false;
+            grid.Columns[6].Visible = false;
         }
 
 
@@ -299,6 +303,18 @@ namespace ProjetoSistemas
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
             BuscarNome();
+        }
+
+        private void btnImg_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog(); // jogando todos os recursos do OpenFileDialog para a varivael " dialog "
+            dialog.Filter = "Imagens(*.jpg; *.png) | *,jpg; *.png"; // com isso vai apenas mostrar arquivos com formatos jpg e png
+            
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                foto = dialog.FileName.ToString();  //Pega o caminho da img selecionada 
+                image.ImageLocation = foto;  // JOGAR O CAMINHO DA IMAGEM, PARA A PICTUREBOX
+            }
         }
     }//FIM
 }
