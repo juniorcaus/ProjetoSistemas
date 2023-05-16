@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 
+using System.IO;
+
 namespace ProjetoSistemas
 {
     public partial class FrmPrincipal : Form
@@ -48,6 +50,7 @@ namespace ProjetoSistemas
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
             // Carrega tudo ao abrir
+            LimparFoto();
             ListarGrid();
         }
 
@@ -90,12 +93,13 @@ namespace ProjetoSistemas
             con.AbrirConexao(); // Essa função abre o metado de Conexão dentro da classe Conexao.cs
             //CRUD
 
-            sql =  "INSERT INTO cliente (nome, endereco, cpf, telefone) VALUES (@nome, @endereco, @cpf, @telefone)";
+            sql =  "INSERT INTO cliente (nome, endereco, cpf, telefone, imagem) VALUES (@nome, @endereco, @cpf, @telefone, @imagem)";
             cmd = new MySqlCommand(sql, con.con);
             cmd.Parameters.AddWithValue("@nome", txtNome.Text); //função para adicionar parametros com os valores ou seja vai buscar o valor q for digitado no campo "nome" do projeto
             cmd.Parameters.AddWithValue("@endereco", txtEnd.Text);
             cmd.Parameters.AddWithValue("cpf", txtCPF.Text);
             cmd.Parameters.AddWithValue("telefone", txtTel.Text);
+            cmd.Parameters.AddWithValue("imagem", img()); //METADO DE img()
 
             cmd.ExecuteNonQuery();
             con.FecharConexao();
@@ -106,8 +110,8 @@ namespace ProjetoSistemas
             DesabilitarBotoes();
           
             btnNovo.Enabled = true; // PARA DEIXAR APENAS O BOTÃO "NOVO" ATIVADO
-           
-            
+
+            LimparFoto();
             ListarGrid(); // ESSE METADO ATUALIZA A GRID 
 
 
@@ -162,9 +166,11 @@ namespace ProjetoSistemas
         private void btnNovo_Click(object sender, EventArgs e)
         {
             HabilitarCampos();
-            txtNome.Focus();
             LimparCampos();
+            LimparFoto();
+            txtNome.Focus();
             HabilitarBotoes();
+
             btnNovo.Enabled = false; //FUNÇÃO PARA DEIXAR O BOTÃO "NOVO" DESATIVATO, DEPOIS DE CLICAR NELE MESMO
             btnAlterar.Enabled = false;
             btnExcluir.Enabled = false;
@@ -316,6 +322,38 @@ namespace ProjetoSistemas
                 image.ImageLocation = foto;  // JOGAR O CAMINHO DA IMAGEM, PARA A PICTUREBOX
             }
         }
+
+        private byte[] img() //Metado para enviar imagem ao banco de dados
+        {
+            byte[] imagem_byte = null;
+
+            if(foto == "") // se o "foto" que é o caminho, for vazio, retorna nulo
+            {
+                return null;
+            }
+
+            FileStream fs = new FileStream(foto, FileMode.Open, FileAccess.Read); // Essas são funções Padrão 'É criada uma instância de FileStream para abrir o arquivo de imagem especificado pela variável'
+
+            BinaryReader br = new BinaryReader(fs); //Adicionando o "fs" dentro do new "binaryReader" é o mesmo que adicionar todo a variavel "FileStream fs" da linha 326
+
+            imagem_byte = br.ReadBytes((int)fs.Length); //pegar o comprimento do FileStream dentro de um tipo Imagem_Byte | e o " ((int))fs.lenght)" força ser um inteiro 
+
+            return imagem_byte;
+
+        }
+
+        private void LimparFoto() //METADO LIMPAR FOTO
+        {
+            image.Image = Properties.Resources.photo; // componente "image". com a propriedade "Image" vai buscar a foto de perfil "photo"
+            foto = "ft/photo.png";      // "foto" é uma variavel tipo string que tem o caminho da imagem 
+        }
+
+
+
+
+
+
+
     }//FIM
 }
  

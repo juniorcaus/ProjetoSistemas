@@ -217,6 +217,8 @@
             // 
             // image
             // 
+            this.image.BackColor = System.Drawing.Color.LightCyan;
+            this.image.Image = global::ProjetoSistemas.Properties.Resources.photo;
             this.image.Location = new System.Drawing.Point(1114, 40);
             this.image.Name = "image";
             this.image.Size = new System.Drawing.Size(220, 210);
