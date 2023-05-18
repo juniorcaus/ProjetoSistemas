@@ -286,6 +286,19 @@ namespace ProjetoSistemas
             txtCPF.Text = grid.CurrentRow.Cells[3].Value.ToString();
             txtTel.Text = grid.CurrentRow.Cells[5].Value.ToString();
 
+
+            // PEGAR A FOTO
+            if(grid.CurrentRow.Cells[6].Value != DBNull.Value) // for diferente de nulo(ou seja CONTEM Imagem) vai lá e pega a imagem, se não vai colocar a imagem padrão
+            {
+                byte[] imagem = (byte[])grid.Rows[e.RowIndex].Cells[6].Value; //essa função cria uma variavel byte imagem para já receber convertido em byte oque vem da grid 
+                MemoryStream ms = new MemoryStream(imagem); // vai receber a variavel byte que já tem o valor da grid convertido
+
+                image.Image = System.Drawing.Image.FromStream(ms);
+            } 
+            else
+            {
+                image.Image = Properties.Resources.photo; //se não escolher a imagem, vai selecionar a imagem "photo" padrão
+            }
         }
 
         
