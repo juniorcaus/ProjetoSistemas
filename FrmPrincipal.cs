@@ -23,7 +23,9 @@ namespace ProjetoSistemas
         
         string id; //Variavel que pega o id do registro
 
-        string foto;            // Variavel que vai receber a imagem (criado globalmente, para poder ser usado em qualquer lugar do código).
+        string foto;  // Variavel que vai receber a imagem (criado globalmente, para poder ser usado em qualquer lugar do código).
+
+        string alterouFoto = "nao";
 
 
         public FrmPrincipal()
@@ -157,9 +159,12 @@ namespace ProjetoSistemas
         {
 
             DesabilitarBotoes();
-            btnNovo.Enabled = true; // FUNÇÃO PARA DEIXAR APENAS O BOTÃO "NOVO" ATIVO, DEPOIS DE CLICAR EM "CANCELAR"
-            LimparCampos();
             DesabalitarCampos(); 
+            LimparCampos();
+            btnNovo.Enabled = true; // FUNÇÃO PARA DEIXAR APENAS O BOTÃO "NOVO" ATIVO, DEPOIS DE CLICAR EM "CANCELAR"
+
+            ListarGrid();
+            alterouFoto = "nao";
 
         }
 
@@ -234,7 +239,7 @@ namespace ProjetoSistemas
                 txtNome.Text = "";
                 txtNome.Focus();
                 return;
-            }
+            }   
 
             if (txtCPF.Text == "   .   .   -" || txtCPF.Text.Length < 14) // Se o texto que digitei no formulario "nome" estiver vazio vai dar error e abrir uma mensagem
             {
@@ -247,14 +252,34 @@ namespace ProjetoSistemas
             con.AbrirConexao(); // Essa função abre o metado de Conexão dentro da classe Conexao.cs
             //CRUD
 
-            sql = "UPDATE cliente SET nome = @nome, endereco = @endereco, cpf = @cpf, telefone = @telefone WHERE id=@id";  //o código "WHERE id=@id" é para buscar a propriedade expecifica como 'nome, cpf, telefone etc..
-            cmd = new MySqlCommand(sql, con.con);
-            cmd.Parameters.AddWithValue("@id", id ); // com isso quando for alterar um determinado registro, só vai alterar o selecionado com "id"
+            if(alterouFoto == "sim") // se a string "alterouFoto for "sim" ou seja se a foto vai ser alterada, vai executar as funções abaixo: 
+            {
+                sql = "UPDATE cliente SET nome = @nome, endereco = @endereco, cpf = @cpf, telefone = @telefone, imagem = @imagem  WHERE id=@id";  //o código "WHERE id=@id" é para buscar a propriedade expecifica como 'nome, cpf, telefone etc..
 
-            cmd.Parameters.AddWithValue("@nome", txtNome.Text); //função para adicionar parametros com os valores ou seja vai buscar o valor q for digitado no campo "nome" do projeto
-            cmd.Parameters.AddWithValue("@endereco", txtEnd.Text);
-            cmd.Parameters.AddWithValue("cpf", txtCPF.Text);
-            cmd.Parameters.AddWithValue("telefone", txtTel.Text);
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@id", id); // com isso quando for alterar um determinado registro, só vai alterar o selecionado com "id"
+
+                cmd.Parameters.AddWithValue("@nome", txtNome.Text); //função para adicionar parametros com os valores ou seja vai buscar o valor q for digitado no campo "nome" do projeto
+                cmd.Parameters.AddWithValue("@endereco", txtEnd.Text);
+                cmd.Parameters.AddWithValue("cpf", txtCPF.Text);
+                cmd.Parameters.AddWithValue("telefone", txtTel.Text);
+                cmd.Parameters.AddWithValue("imagem", img());
+            } 
+            
+            else if(alterouFoto == "nao")  //se for "não" vai executar as função abaixo sem o parametro "imagem"
+            {
+                sql = "UPDATE cliente SET nome = @nome, endereco = @endereco, cpf = @cpf, telefone = @telefone  WHERE id=@id";  //o código "WHERE id=@id" é para buscar a propriedade expecifica como 'nome, cpf, telefone etc..
+
+                cmd = new MySqlCommand(sql, con.con);
+                cmd.Parameters.AddWithValue("@id", id); // com isso quando for alterar um determinado registro, só vai alterar o selecionado com "id"
+
+                cmd.Parameters.AddWithValue("@nome", txtNome.Text); //função para adicionar parametros com os valores ou seja vai buscar o valor q for digitado no campo "nome" do projeto
+                cmd.Parameters.AddWithValue("@endereco", txtEnd.Text);
+                cmd.Parameters.AddWithValue("cpf", txtCPF.Text);
+                cmd.Parameters.AddWithValue("telefone", txtTel.Text);
+            }
+
+            
 
             cmd.ExecuteNonQuery();
             con.FecharConexao();
@@ -268,37 +293,56 @@ namespace ProjetoSistemas
 
 
             ListarGrid(); // ESSE METADO ATUALIZA A GRID 
+            LimparFoto();
 
             MessageBox.Show("Registro Alterado com Sucesso !!!", "Alterar", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void grid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            HabilitarBotoes();
-            btnNovo.Enabled = false;
-            btnSalvar.Enabled = false;
-            HabilitarCampos();
 
-            id= grid.CurrentRow.Cells[0].Value.ToString(); //vai pegar oque ta na posição "0" e jogar na variavel "id"
-
-            txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString(); //converte para texto tudo que vem da celula do grid e jogo para o "txtNome"
-            txtEnd.Text = grid.CurrentRow.Cells[2].Value.ToString();
-            txtCPF.Text = grid.CurrentRow.Cells[3].Value.ToString();
-            txtTel.Text = grid.CurrentRow.Cells[5].Value.ToString();
-
-
-            // PEGAR A FOTO
-            if(grid.CurrentRow.Cells[6].Value != DBNull.Value) // for diferente de nulo(ou seja CONTEM Imagem) vai lá e pega a imagem, se não vai colocar a imagem padrão
+            if (e.RowIndex > -1) 
             {
-                byte[] imagem = (byte[])grid.Rows[e.RowIndex].Cells[6].Value; //essa função cria uma variavel byte imagem para já receber convertido em byte oque vem da grid 
-                MemoryStream ms = new MemoryStream(imagem); // vai receber a variavel byte que já tem o valor da grid convertido
+                LimparFoto();
 
-                image.Image = System.Drawing.Image.FromStream(ms);
-            } 
-            else
-            {
-                image.Image = Properties.Resources.photo; //se não escolher a imagem, vai selecionar a imagem "photo" padrão
+                HabilitarBotoes();
+                btnNovo.Enabled = false;
+                btnSalvar.Enabled = false;
+                HabilitarCampos();
+
+                alterouFoto = "nao";
+
+                id = grid.CurrentRow.Cells[0].Value.ToString(); //vai pegar oque ta na posição "0" e jogar na variavel "id"
+
+                txtNome.Text = grid.CurrentRow.Cells[1].Value.ToString(); //converte para texto tudo que vem da celula do grid e jogo para o "txtNome"
+                txtEnd.Text = grid.CurrentRow.Cells[2].Value.ToString();
+                txtCPF.Text = grid.CurrentRow.Cells[3].Value.ToString();
+                txtTel.Text = grid.CurrentRow.Cells[5].Value.ToString();
+
+
+                // PEGAR A FOTO
+                if (grid.CurrentRow.Cells[6].Value != DBNull.Value) // for diferente de nulo(ou seja CONTEM Imagem) vai lá e pega a imagem, se não vai colocar a imagem padrão
+                {
+                    byte[] imagem = (byte[])grid.Rows[e.RowIndex].Cells[6].Value; //essa função cria uma variavel byte imagem para já receber convertido em byte oque vem da grid 
+                    MemoryStream ms = new MemoryStream(imagem); // vai receber a variavel byte que já tem o valor da grid convertido
+
+                    image.Image = System.Drawing.Image.FromStream(ms);
+                }
+                else
+                {
+                    image.Image = Properties.Resources.photo; //se não escolher a imagem, vai selecionar a imagem "photo" padrão
+                }
+
             }
+            else //CASO NÃO TENHA DADOS NA GRID COM NOME, CPF ETC.. VAI DA RETURN PARA N DAR ERROR
+
+            {
+                return;
+            }
+
+            
+
+
         }
 
         
@@ -326,6 +370,7 @@ namespace ProjetoSistemas
 
         private void btnImg_Click(object sender, EventArgs e)
         {
+            alterouFoto = "sim";
             OpenFileDialog dialog = new OpenFileDialog(); // jogando todos os recursos do OpenFileDialog para a varivael " dialog "
             dialog.Filter = "Imagens(*.jpg; *.png) | *,jpg; *.png"; // com isso vai apenas mostrar arquivos com formatos jpg e png
             
@@ -333,6 +378,13 @@ namespace ProjetoSistemas
             {
                 foto = dialog.FileName.ToString();  //Pega o caminho da img selecionada 
                 image.ImageLocation = foto;  // JOGAR O CAMINHO DA IMAGEM, PARA A PICTUREBOX
+
+                alterouFoto = "sim"; // quando abrir e escolher uma foto
+            }
+
+            else
+            {
+                alterouFoto = "nao"; //quando não escolher uma foto ou abrir para adicionar uma foto e clicar em "cancelar"
             }
         }
 
