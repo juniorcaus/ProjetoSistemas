@@ -27,7 +27,7 @@ namespace ProjetoSistemas
 
         string alterouFoto = "nao";
 
-        string cpfAntigo; // vai verificar se o cpf já existe
+        string cpfAntigo; // isso vai verificar se o cpf já existe
 
 
         public FrmPrincipal()
