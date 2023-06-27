@@ -27,6 +27,8 @@ namespace ProjetoSistemas
 
         string alterouFoto = "nao";
 
+        string cpfAntigo;
+
 
         public FrmPrincipal()
         {
@@ -296,7 +298,25 @@ namespace ProjetoSistemas
                 cmd.Parameters.AddWithValue("telefone", txtTel.Text);
             }
 
-            
+            if(txtCPF.Text != cpfAntigo)
+            {
+
+                MySqlCommand cmdVerificar; //verificar se cpf já existe
+                cmdVerificar = new MySqlCommand("SELECT * FROM cliente WHERE cpf=@cpf", con.con); // os "con" servem para instanciar e abrir conexao
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmdVerificar;
+                cmdVerificar.Parameters.AddWithValue("@cpf", txtCPF.Text);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if (dt.Rows.Count > 0) // se o "dt" encontrar algum registro, vai retornar um error, dizendo q já existe esse cpf
+                {
+                    MessageBox.Show("CPF JÁ CADASTRADO !!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    txtCPF.Text = "";
+                    txtCPF.Focus();
+                    return; // com esse return ele para aqui, e n executa os códigos abaixo, como o " con.FecharConexao();" por exeemplo
+                 }
+
+            }
 
             cmd.ExecuteNonQuery();
             con.FecharConexao();
@@ -335,6 +355,8 @@ namespace ProjetoSistemas
                 txtEnd.Text = grid.CurrentRow.Cells[2].Value.ToString();
                 txtCPF.Text = grid.CurrentRow.Cells[3].Value.ToString();
                 txtTel.Text = grid.CurrentRow.Cells[5].Value.ToString();
+
+                cpfAntigo = txtCPF.Text = grid.CurrentRow.Cells[3].Value.ToString();
 
 
                 // PEGAR A FOTO
