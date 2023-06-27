@@ -27,7 +27,7 @@ namespace ProjetoSistemas
 
         string alterouFoto = "nao";
 
-        string cpfAntigo;
+        string cpfAntigo; // vai verificar se o cpf já existe
 
 
         public FrmPrincipal()
@@ -298,7 +298,7 @@ namespace ProjetoSistemas
                 cmd.Parameters.AddWithValue("telefone", txtTel.Text);
             }
 
-            if(txtCPF.Text != cpfAntigo)
+            if (txtCPF.Text != cpfAntigo)
             {
 
                 MySqlCommand cmdVerificar; //verificar se cpf já existe
@@ -314,7 +314,7 @@ namespace ProjetoSistemas
                     txtCPF.Text = "";
                     txtCPF.Focus();
                     return; // com esse return ele para aqui, e n executa os códigos abaixo, como o " con.FecharConexao();" por exeemplo
-                 }
+                }
 
             }
 
