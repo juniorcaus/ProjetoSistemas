@@ -69,5 +69,15 @@ namespace ProjetoSistemas.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Venda_de_ingressos_online_1_8 {
+            get {
+                object obj = ResourceManager.GetObject("Venda-de-ingressos-online-1-8", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
