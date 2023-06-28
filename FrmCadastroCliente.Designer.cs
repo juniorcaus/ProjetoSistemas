@@ -1,6 +1,6 @@
 ﻿namespace ProjetoSistemas
 {
-    partial class FrmPrincipal
+    partial class FrmCadastroCliente
     {
         /// <summary>
         /// Variável de designer necessária.

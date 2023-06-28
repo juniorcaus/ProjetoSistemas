@@ -13,7 +13,7 @@ using System.IO;
 
 namespace ProjetoSistemas
 {
-    public partial class FrmPrincipal : Form
+    public partial class FrmCadastroCliente : Form
     {
         Conexao con  = new Conexao(); // "con" chama todos os metados da classe Conexao.cs, Lembrando q o "con" daqui é diferente do "con" dentro do Conexao.cs
 
@@ -30,7 +30,7 @@ namespace ProjetoSistemas
         string cpfAntigo; // isso vai verificar se o cpf já existe
 
 
-        public FrmPrincipal()
+        public FrmCadastroCliente()
         {
             InitializeComponent();
         }
