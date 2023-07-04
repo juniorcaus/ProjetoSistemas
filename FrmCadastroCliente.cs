@@ -16,7 +16,6 @@ namespace ProjetoSistemas
     public partial class FrmCadastroCliente : Form
     {
         Conexao con  = new Conexao(); // "con" chama todos os metados da classe Conexao.cs, Lembrando q o "con" daqui é diferente do "con" dentro do Conexao.cs
-
         string sql;  //Varial para pode declarar em outros lugares usando apenas "sql = " e pega os valores dentro da string "sql"
         MySqlCommand cmd;
 
@@ -106,20 +105,20 @@ namespace ProjetoSistemas
             cmd.Parameters.AddWithValue("imagem", img()); //METADO DE img()
 
            
-            MySqlCommand cmdVerificar; //verificar se cpf já existe
-            cmdVerificar = new MySqlCommand("SELECT * FROM cliente WHERE cpf=@cpf", con.con); // os "con" servem para instanciar e abrir conexao
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            da.SelectCommand = cmdVerificar;
-            cmdVerificar.Parameters.AddWithValue("@cpf", txtCPF.Text);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            if(dt.Rows.Count > 0 ) // se o "dt" encontrar algum registro, vai retornar um error, dizendo q já existe esse cpf
-            {
-                MessageBox.Show("CPF JÁ CADASTRADO !!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                txtCPF.Text = "";
-                txtCPF.Focus();
-                return; // com esse return ele para aqui, e n executa os códigos abaixo, como o " con.FecharConexao();" por exeemplo
-            }
+                MySqlCommand cmdVerificar; //verificar se cpf já existe
+                cmdVerificar = new MySqlCommand("SELECT * FROM cliente WHERE cpf=@cpf", con.con); // os "con" servem para instanciar e abrir conexao
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                da.SelectCommand = cmdVerificar;
+                cmdVerificar.Parameters.AddWithValue("@cpf", txtCPF.Text);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                if(dt.Rows.Count > 0 ) // se o "dt" encontrar algum registro, vai retornar um error, dizendo q já existe esse cpf
+                {
+                    MessageBox.Show("CPF JÁ CADASTRADO !!", "OK", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    txtCPF.Text = "";
+                    txtCPF.Focus();
+                    return; // com esse return ele para aqui, e n executa os códigos abaixo, como o " con.FecharConexao();" por exeemplo
+                }
 
 
             cmd.ExecuteNonQuery();
