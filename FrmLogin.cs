@@ -48,8 +48,13 @@ namespace ProjetoSistemas
                     FrmMenu frm = new FrmMenu();
                     frm.ShowDialog();
 
-                    this.Hide();
                 }
+
+                else
+                {
+                    MessageBox.Show("Login ou Senha errado !");
+                }
+
                     
             }
 
