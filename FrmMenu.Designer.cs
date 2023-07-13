@@ -38,6 +38,7 @@ namespace ProjetoSistemas
             this.produtosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.relatorioDeClienteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPrincipal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -79,7 +80,8 @@ namespace ProjetoSistemas
             this.cadastrosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.MenuCliente,
             this.produtosToolStripMenuItem,
-            this.usuarioToolStripMenuItem});
+            this.usuarioToolStripMenuItem,
+            this.relatorioDeClienteToolStripMenuItem});
             this.cadastrosToolStripMenuItem.Name = "cadastrosToolStripMenuItem";
             this.cadastrosToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.cadastrosToolStripMenuItem.Text = "Cadastros";
@@ -115,6 +117,13 @@ namespace ProjetoSistemas
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
+            // relatorioDeClienteToolStripMenuItem
+            // 
+            this.relatorioDeClienteToolStripMenuItem.Name = "relatorioDeClienteToolStripMenuItem";
+            this.relatorioDeClienteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.relatorioDeClienteToolStripMenuItem.Text = "Relatorio de Cliente";
+            this.relatorioDeClienteToolStripMenuItem.Click += new System.EventHandler(this.relatorioDeClienteToolStripMenuItem_Click);
+            // 
             // FrmMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -145,5 +154,6 @@ namespace ProjetoSistemas
         private System.Windows.Forms.ToolStripMenuItem produtosToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.ToolStripMenuItem usuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem relatorioDeClienteToolStripMenuItem;
     }
 }

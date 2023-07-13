@@ -27,5 +27,11 @@ namespace ProjetoSistemas
         {
 
         }
+
+        private void relatorioDeClienteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Relatorio.FrmCliente frm = new Relatorio.FrmCliente();
+            frm.ShowDialog();
+        }
     }
 }
