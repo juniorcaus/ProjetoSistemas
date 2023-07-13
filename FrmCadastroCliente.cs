@@ -181,6 +181,7 @@ namespace ProjetoSistemas
             LimparCampos();
             btnNovo.Enabled = true; // FUNÇÃO PARA DEIXAR APENAS O BOTÃO "NOVO" ATIVO, DEPOIS DE CLICAR EM "CANCELAR"
 
+            LimparFoto();
             ListarGrid();
             alterouFoto = "nao";
 
