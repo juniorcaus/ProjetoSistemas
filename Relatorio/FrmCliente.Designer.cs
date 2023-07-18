@@ -34,11 +34,13 @@ namespace ProjetoSistemas.Relatorio
             // 
             // reportViewer1
             // 
-            this.reportViewer1.Location = new System.Drawing.Point(33, 24);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "ProjetoSistemas.Relatorio.RelCliente.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(12, 24);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(762, 443);
+            this.reportViewer1.Size = new System.Drawing.Size(828, 478);
             this.reportViewer1.TabIndex = 0;
+           // this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
             // 
             // FrmCliente
             // 

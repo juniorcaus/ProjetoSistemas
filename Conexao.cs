@@ -12,11 +12,11 @@ namespace ProjetoSistemas
     class Conexao
     {
         // CONEXÃO LOCAL ↓
-       // public string conec = "SERVER=localhost; DATABASE=aula; UID=root; PWD=; PORT=;"; //string de conexão
+        public string conec = "SERVER=localhost; DATABASE=aula; UID=root; PWD=; PORT=;"; //string de conexão
 
 
         //CONEXÃO REMOTO ↓
-        public string conec = "SERVER=mysql744.umbler.com; DATABASE=dbaula; UID=aula; PWD=j32447188; PORT=41890;"; //string de conexão remoto com a UMBLER.COM
+       // public string conec = "SERVER=mysql744.umbler.com; DATABASE=dbaula; UID=aula; PWD=j32447188; PORT=41890;"; //string de conexão remoto com a UMBLER.COM
 
 
         public MySqlConnection con = null;
