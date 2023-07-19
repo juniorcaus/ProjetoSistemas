@@ -19,6 +19,8 @@ namespace ProjetoSistemas.Relatorio
 
         private void FrmCliente_Load(object sender, EventArgs e)
         {
+            // TODO: esta linha de código carrega dados na tabela 'aulaDataSet.login'. Você pode movê-la ou removê-la conforme necessário.
+            this.loginTableAdapter.Fill(this.aulaDataSet.login);
 
             this.reportViewer1.RefreshReport();
         }

@@ -29,18 +29,41 @@ namespace ProjetoSistemas.Relatorio
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.aulaDataSet = new ProjetoSistemas.aulaDataSet();
+            this.loginBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.loginTableAdapter = new ProjetoSistemas.aulaDataSetTableAdapters.loginTableAdapter();
+            ((System.ComponentModel.ISupportInitialize)(this.aulaDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // reportViewer1
             // 
+            reportDataSource1.Name = "DataSetLogin";
+            reportDataSource1.Value = this.loginBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "ProjetoSistemas.Relatorio.RelCliente.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(12, 24);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.Size = new System.Drawing.Size(828, 478);
             this.reportViewer1.TabIndex = 0;
-           // this.reportViewer1.Load += new System.EventHandler(this.reportViewer1_Load);
+            // 
+            // aulaDataSet
+            // 
+            this.aulaDataSet.DataSetName = "aulaDataSet";
+            this.aulaDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // loginBindingSource
+            // 
+            this.loginBindingSource.DataMember = "login";
+            this.loginBindingSource.DataSource = this.aulaDataSet;
+            // 
+            // loginTableAdapter
+            // 
+            this.loginTableAdapter.ClearBeforeFill = true;
             // 
             // FrmCliente
             // 
@@ -51,6 +74,8 @@ namespace ProjetoSistemas.Relatorio
             this.Name = "FrmCliente";
             this.Text = "Relatorio de Cliente";
             this.Load += new System.EventHandler(this.FrmCliente_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.aulaDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.loginBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -58,5 +83,8 @@ namespace ProjetoSistemas.Relatorio
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
+        private aulaDataSet aulaDataSet;
+        private System.Windows.Forms.BindingSource loginBindingSource;
+        private aulaDataSetTableAdapters.loginTableAdapter loginTableAdapter;
     }
 }

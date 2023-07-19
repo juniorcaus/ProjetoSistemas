@@ -6,18 +6,18 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>3.99931cm</Width>
+              <Width>4.62549cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.99931cm</Width>
+              <Width>4.62549cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>3.99931cm</Width>
+              <Width>4.62549cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
             <TablixRow>
-              <Height>0.78521cm</Height>
+              <Height>1.28792cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -112,7 +112,7 @@
               </TablixCells>
             </TablixRow>
             <TablixRow>
-              <Height>0.78521cm</Height>
+              <Height>1.28792cm</Height>
               <TablixCells>
                 <TablixCell>
                   <CellContents>
@@ -228,19 +228,55 @@
         <DataSetName>DataSetLogin</DataSetName>
         <Top>2.08703cm</Top>
         <Left>2.2987cm</Left>
-        <Height>1.57042cm</Height>
-        <Width>11.99792cm</Width>
+        <Height>2.57584cm</Height>
+        <Width>13.87647cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
         </Style>
       </Tablix>
+      <Textbox Name="Textbox2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>MEU RELATÓRIO</Value>
+                <Style>
+                  <FontFamily>TIMes New Roman</FontFamily>
+                  <FontSize>16pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>0.68474cm</Top>
+        <Left>0.3175cm</Left>
+        <Height>0.89104cm</Height>
+        <Width>18.29244cm</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>2in</Height>
+    <Height>2.29167in</Height>
     <Style />
   </Body>
-  <Width>7.32675in</Width>
+  <Width>7.65984in</Width>
   <Page>
     <PageHeader>
       <Height>2.54cm</Height>
@@ -254,11 +290,15 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value />
-                  <Style />
+                  <Value>EMPRESA X</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
-              <Style />
+              <Style>
+                <TextAlign>Center</TextAlign>
+              </Style>
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox7</rd:DefaultName>
@@ -296,8 +336,16 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
+                  <Value> Data: </Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
+                </TextRun>
+                <TextRun>
                   <Value>=Now()</Value>
-                  <Style />
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
@@ -307,7 +355,7 @@
           <Top>1.76361cm</Top>
           <Left>2.52306cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.92333cm</Width>
+          <Width>4.40113cm</Width>
           <ZIndex>2</ZIndex>
           <Style>
             <Border>
@@ -327,7 +375,7 @@
       </Style>
     </PageHeader>
     <PageFooter>
-      <Height>2.54cm</Height>
+      <Height>3.81cm</Height>
       <PrintOnFirstPage>true</PrintOnFirstPage>
       <PrintOnLastPage>true</PrintOnLastPage>
       <ReportItems>
@@ -338,18 +386,21 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value />
-                  <Style />
+                  <Value>Todos Direitos Reservados - JCAUS </Value>
+                  <Style>
+                    <FontStyle>Italic</FontStyle>
+                    <FontSize>9pt</FontSize>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox9</rd:DefaultName>
-          <Top>1.94cm</Top>
-          <Left>3.79801cm</Left>
+          <Top>3.13063cm</Top>
+          <Left>12.37051cm</Left>
           <Height>0.6cm</Height>
-          <Width>10.49861cm</Width>
+          <Width>5.68319cm</Width>
           <Style>
             <Border>
               <Style>None</Style>
@@ -367,17 +418,20 @@
             <Paragraph>
               <TextRuns>
                 <TextRun>
-                  <Value />
-                  <Style />
+                  <Value>=Globals!PageNumber</Value>
+                  <Style>
+                    <FontWeight>Bold</FontWeight>
+                  </Style>
                 </TextRun>
               </TextRuns>
               <Style />
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox10</rd:DefaultName>
-          <Top>0.17639cm</Top>
+          <Top>2.81313cm</Top>
+          <Left>0.3175cm</Left>
           <Height>0.6cm</Height>
-          <Width>2.5cm</Width>
+          <Width>3.00271cm</Width>
           <ZIndex>1</ZIndex>
           <Style>
             <Border>
