@@ -19,11 +19,11 @@ namespace ProjetoSistemas.Relatorio
 
         private void FrmCliente_Load(object sender, EventArgs e)
         {
-            // TODO: esta linha de código carrega dados na tabela 'aulaDataSet.cliente'. Você pode movê-la ou removê-la conforme necessário.
+            // TODO: esta linha de código carrega dados na tabela 'aulaDataSet.produtos'. Você pode movê-la ou removê-la conforme necessário.
+            this.produtosTableAdapter.Fill(this.aulaDataSet.produtos);
             this.clienteTableAdapter.Fill(this.aulaDataSet.cliente);
-
-            // TODO: esta linha de código carrega dados na tabela 'aulaDataSet.login'. Você pode movê-la ou removê-la conforme necessário.
             this.loginTableAdapter.Fill(this.aulaDataSet.login);
+
 
             this.reportViewer1.RefreshReport();
         }
