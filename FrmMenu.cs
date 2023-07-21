@@ -33,5 +33,11 @@ namespace ProjetoSistemas
             Relatorio.FrmCliente frm = new Relatorio.FrmCliente();
             frm.ShowDialog();
         }
+
+        private void produtosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Relatorio.FrmProdutos frm = new Relatorio.FrmProdutos();
+            frm.ShowDialog();
+        }
     }
 }
