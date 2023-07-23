@@ -11,17 +11,17 @@
 </p>
 <p align="center" style="color:black">VERSÃO LOCAL </p>
 <h1 align="center">
-<img alt="Readme" title="Readme" src="C:\C# CURSO\ProjetoSistemas\gif/GIT-PROJETO-LOCAL.gif" width="720" height="300"/>
+<img alt="Readme" title="Readme" src=".\gif/GIT-PROJETO-LOCAL.gif" width="720" height="300"/>
 </h1>
 
 <p align="center" style="color:black">VERSÃO ONLINE(REMOTA) </p>
 <h1 align="center">
-<img alt="Readme" title="Readme" src="C:\C# CURSO\ProjetoSistemas\gif/GIFPROJETOHOSPEDAGEM.gif" width="720" height="300"/>
+<img alt="Readme" title="Readme" src=".\gif/GIFPROJETOHOSPEDAGEM.gif" width="720" height="300"/>
 </h1>
 
 <p align="center" style="color:black">VERSÃO INSTALADA </p>
 <h1 align="center">
-<img alt="Readme" title="Readme" src="C:\C# CURSO\ProjetoSistemas\gif/GIFINSTALADORPROJETO.gif" width="720" height="300"/>
+<img alt="Readme" title="Readme" src=".\gif/GIFINSTALADORPROJETO.gif" width="720" height="300"/>
 </h1>
 
 # Features 
@@ -29,7 +29,7 @@
 - [x] Tela de Login e Senha, com Autenticação para Validar Usuário.
 - [x] Banco de Dados MySql, Através do Xampp.
 - [x] Versão Usando Hospedagem na nuvem, Localhost e um Instalador no Computador.
-- [x] Relatório com dados dos Usuários Cadastrados, Usando ReportView  
+- [x] Relatório com dados dos Usuários Cadastrados, Usando ReportView.  
 
 <br>
 
