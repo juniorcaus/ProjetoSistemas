@@ -201,7 +201,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="READ.MD" />
+    <None Include="README.md" />
     <None Include="Resources\photo.png" />
   </ItemGroup>
   <ItemGroup>
