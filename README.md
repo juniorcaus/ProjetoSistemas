@@ -12,15 +12,25 @@
 <p align="center" style="color:black">VERSÃO LOCAL </p>
 <h1 align="center">
 <img alt="Readme" title="Readme" src=".\gif/GIT-PROJETO-LOCAL.gif" width="720" height="300"/>
+
+![GIT-PROJETO-LOCAL-EDITE](https://github.com/juniorcaus/ProjetoSistemas/assets/88864625/df31bf04-3c65-4414-bd05-0042b854f73e)  
 </h1>
+
+
 
 <p align="center" style="color:black">VERSÃO ONLINE(REMOTA) </p>
 <h1 align="center">
+ 
+![GIT-PROJETO-HOSPEDAGEM-EDIT](https://github.com/juniorcaus/ProjetoSistemas/assets/88864625/39bbc946-58fd-44f5-a3ae-0cfaf7d461a0)
 <img alt="Readme" title="Readme" src=".\gif/GIFPROJETOHOSPEDAGEM.gif" width="720" height="300"/>
+
+ 
 </h1>
 
 <p align="center" style="color:black">VERSÃO INSTALADA </p>
 <h1 align="center">
+
+ ![GIFINSTALADORPROJETO](https://github.com/juniorcaus/ProjetoSistemas/assets/88864625/cefa32e0-bee1-483d-9387-64feb8b7c6b7)
 <img alt="Readme" title="Readme" src=".\gif/GIFINSTALADORPROJETO.gif" width="720" height="300"/>
 </h1>
 
